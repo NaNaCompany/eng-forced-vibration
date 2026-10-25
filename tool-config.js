@@ -1,0 +1,80 @@
+export const tool={
+  "id": "E130",
+  "slug": "eng-forced-vibration",
+  "title": "강제진동 정상 진폭 계산기",
+  "title_en": "Forced-vibration steady amplitude calculator",
+  "category": "역학·재료",
+  "category_en": "Mechanics and materials",
+  "fields": [
+    {
+      "key": "mass",
+      "label": "진동 질량 m",
+      "label_en": "Oscillating mass m",
+      "dimension": "mass",
+      "example": 2,
+      "constraint": "positive",
+      "display_unit": "kg",
+      "display_value": "2"
+    },
+    {
+      "key": "stiffness",
+      "label": "선형 강성 k",
+      "label_en": "Linear stiffness k",
+      "dimension": "stiffness",
+      "example": 200,
+      "constraint": "positive",
+      "display_unit": "Nm",
+      "display_value": "200"
+    },
+    {
+      "key": "damping",
+      "label": "점성 감쇠계수 c",
+      "label_en": "Viscous damping coefficient c",
+      "dimension": "damping",
+      "example": 4,
+      "constraint": "nonnegative",
+      "display_unit": "Nsm",
+      "display_value": "4"
+    },
+    {
+      "key": "force",
+      "label": "조화 가진력 진폭 F₀",
+      "label_en": "Harmonic force amplitude F₀",
+      "dimension": "force",
+      "example": 10,
+      "constraint": "nonnegative",
+      "display_unit": "N",
+      "display_value": "10"
+    },
+    {
+      "key": "frequency",
+      "label": "가진 각주파수 ω",
+      "label_en": "Forcing angular frequency ω",
+      "dimension": "angularSpeed",
+      "example": 8,
+      "constraint": "nonnegative",
+      "display_unit": "rads",
+      "display_value": "8"
+    }
+  ],
+  "result_label": "정상 변위 진폭 X",
+  "result_label_en": "Steady displacement amplitude X",
+  "result_dimension": "length",
+  "formula": "X = F₀ / √[(k − mω²)² + (cω)²]",
+  "purpose": "질량·스프링·점성 감쇠로 이루어진 1자유도계에 조화력이 작용할 때 정상 변위 진폭을 계산합니다.",
+  "purpose_en": "Compute the harmonic steady displacement amplitude of a single-degree-of-freedom mass-spring-damper system.",
+  "assumptions": "선형 스프링과 점성 감쇠, 질량에 직접 작용하는 F₀ cos(ωt)를 가정합니다. 초기조건에 따른 과도응답은 제외합니다. c=0이면 표시값은 조화 특수해의 진폭이며 자유진동은 실제로 소멸하지 않습니다. c=0, ω=√(k/m), F₀>0이면 유한한 정상 진폭이 없으므로 오류를 표시합니다. ω=0은 정적 변위 F₀/k입니다.",
+  "assumptions_en": "Required: a linear spring, viscous damping, and a direct force F₀ cos(ωt) on one degree of freedom. Transients from initial conditions are excluded. With c = 0, the result is the harmonic particular-solution amplitude; free motion does not decay. Undamped resonance with F₀ > 0 has no finite steady amplitude. ω = 0 gives static deflection F₀/k.",
+  "sources": [
+    {
+      "label": "MIT — driven and damped harmonic motion",
+      "url": "https://ocw.mit.edu/courses/3-052-nanomechanics-of-materials-and-biomaterials-spring-2007/d8d2ffa0503ad0adf0edb741ddb4e4c8_lec2_appendix.pdf"
+    }
+  ],
+  "condition": "선형 1자유도계와 질량에 직접 작용하는 조화력 조건을 확인했습니다.",
+  "condition_en": "I confirm the linear single-degree-of-freedom model with direct harmonic forcing.",
+  "site": "https://nanalab.kr/eng-forced-vibration/",
+  "repository": "https://github.com/NaNaCompany/eng-forced-vibration",
+  "groups": [],
+  "output_unit": "m"
+};

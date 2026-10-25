@@ -1,0 +1,65 @@
+{
+  "id": "E130",
+  "value": 0.12691827064170239,
+  "value_high_precision": "0.12691827064170238043487385843966010930020794184848922901705096043603660546015050",
+  "method": "Independent Python Decimal arithmetic at 80 significant digits; Taylor series for sine and arcsine, Decimal exp/sqrt, separate physical balance or geometry. No JavaScript imports.",
+  "cases": [
+    {
+      "name": "zero frequency is static deflection",
+      "values": {
+        "frequency": 0
+      },
+      "expected": 0.05
+    },
+    {
+      "name": "zero force has zero forced response even at resonance",
+      "values": {
+        "force": 0,
+        "damping": 0,
+        "frequency": 10
+      },
+      "expected": 0
+    },
+    {
+      "name": "damped resonance has finite amplitude",
+      "values": {
+        "frequency": 10
+      },
+      "expected": 0.25
+    },
+    {
+      "name": "undamped off-resonance particular amplitude",
+      "values": {
+        "damping": 0
+      },
+      "expected": 0.1388888888888889
+    },
+    {
+      "name": "overflowing intermediate inertia retains finite amplitude",
+      "values": {
+        "mass": 1e+308,
+        "stiffness": 1,
+        "damping": 0,
+        "force": 1e+308,
+        "frequency": 10
+      },
+      "expected": 0.01
+    },
+    {
+      "name": "undamped resonance has no finite steady amplitude",
+      "values": {
+        "damping": 0,
+        "frequency": 10
+      },
+      "throws": true
+    },
+    {
+      "name": "unresolvable near-resonance denominator rejected",
+      "values": {
+        "damping": 0,
+        "frequency": 10.000000000000002
+      },
+      "throws": true
+    }
+  ]
+}
